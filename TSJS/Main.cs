@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TSJS {
@@ -153,6 +147,7 @@ namespace TSJS {
       completedJobs.Clear();
       companies.Clear();
       visitedCities.Clear();
+      offers.Clear();
 
       try {
 
@@ -223,6 +218,7 @@ namespace TSJS {
       } catch (Exception exception) {
         MessageBox.Show("Unable to read this file, the following exception occurred:\r\n" + exception.ToString(), "Error Reading File", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
+      textBoxSearch.Focus();
       Cursor.Current = Cursors.Default;
     }
 
@@ -252,6 +248,10 @@ namespace TSJS {
 
     private void checkBoxUnvisitedCities_CheckedChanged(object sender, EventArgs e) {
       ApplySearch();
+    }
+
+    private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+      System.Diagnostics.Process.Start("https://github.com/Technicism/TSJS");
     }
   }
 }
