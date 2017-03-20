@@ -268,6 +268,12 @@
       this.labelUnit.TabIndex = 8;
       this.labelUnit.Text = "Unit:";
       // 
+      // openFileDialog
+      // 
+      this.openFileDialog.DefaultExt = "sii";
+      this.openFileDialog.FileName = "game.sii";
+      this.openFileDialog.SupportMultiDottedExtensions = true;
+      // 
       // labelSearch
       // 
       this.labelSearch.AutoSize = true;
