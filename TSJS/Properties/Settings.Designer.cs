@@ -22,5 +22,41 @@ namespace TSJS.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DecrypterPath {
+            get {
+                return ((string)(this["DecrypterPath"]));
+            }
+            set {
+                this["DecrypterPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int DistanceUnit {
+            get {
+                return ((int)(this["DistanceUnit"]));
+            }
+            set {
+                this["DistanceUnit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UnvisitedCities {
+            get {
+                return ((bool)(this["UnvisitedCities"]));
+            }
+            set {
+                this["UnvisitedCities"] = value;
+            }
+        }
     }
 }

@@ -8,8 +8,6 @@ using System.Windows.Forms;
 namespace TSJS {
   public partial class Main : Form {
 
-    public string decrypterPath;
-
     // Unencrypted plain text of the save game.
     private string contents;
 
@@ -139,7 +137,7 @@ namespace TSJS {
       if (contents.Substring(0, 4) == "ScsC") {         // Encrypted.
         string tempFile = Path.GetTempFileName();
         Process process = new Process();
-        process.StartInfo = new ProcessStartInfo(decrypterPath, openFileDialog.FileName + " " + tempFile);
+        process.StartInfo = new ProcessStartInfo(Properties.Settings.Default.DecrypterPath, openFileDialog.FileName + " " + tempFile);
         process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
         process.Start();
         process.WaitForExit();
@@ -147,7 +145,7 @@ namespace TSJS {
         File.Delete(tempFile);
       } else if (contents.Substring(0, 4) != "SiiN") {  // Decrypted.
         Cursor.Current = Cursors.Default;
-        MessageBox.Show("Cannot Open File.", "Cannot Open File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("Cannot open file, make sure this file was created with the game config.cfg file using:\r\nuset g_save_format \"2\"", "Cannot Open File", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
 
@@ -238,6 +236,16 @@ namespace TSJS {
 
     private void Main_Load(object sender, EventArgs e) {
       comboBoxUnit.SelectedIndex = KILOMETRES;
+
+      /*
+      string configPath = Environment.CurrentDirectory + "\\TSJS.cfg";
+      if (!File.Exists(configPath)) {
+        File.WriteAllText(configPath,
+          "decrypterPath "
+        );
+      }
+      Console.WriteLine(Environment.CurrentDirectory);
+      */
     }
 
     private void comboBoxUnit_SelectedIndexChanged(object sender, EventArgs e) {
@@ -269,9 +277,8 @@ namespace TSJS {
     }
 
     private void buttonSetup_Click(object sender, EventArgs e) {
-      Setup setup = new Setup(this, decrypterPath);
+      Setup setup = new Setup();
       setup.Show();
-      decrypterPath = setup.decrypterPath;
     }
   }
 }

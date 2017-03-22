@@ -31,7 +31,7 @@
       this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
       this.checkBoxUnvisitedCities = new System.Windows.Forms.CheckBox();
       this.labelDistanceUnit = new System.Windows.Forms.Label();
-      this.comboBoxUnit = new System.Windows.Forms.ComboBox();
+      this.comboBoxDistanceUnit = new System.Windows.Forms.ComboBox();
       this.buttonCancel = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
@@ -95,17 +95,17 @@
       this.labelDistanceUnit.TabIndex = 11;
       this.labelDistanceUnit.Text = "Distance Unit:";
       // 
-      // comboBoxUnit
+      // comboBoxDistanceUnit
       // 
-      this.comboBoxUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.comboBoxUnit.FormattingEnabled = true;
-      this.comboBoxUnit.Items.AddRange(new object[] {
+      this.comboBoxDistanceUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.comboBoxDistanceUnit.FormattingEnabled = true;
+      this.comboBoxDistanceUnit.Items.AddRange(new object[] {
             "Kilometres",
             "Miles"});
-      this.comboBoxUnit.Location = new System.Drawing.Point(114, 31);
-      this.comboBoxUnit.Name = "comboBoxUnit";
-      this.comboBoxUnit.Size = new System.Drawing.Size(72, 21);
-      this.comboBoxUnit.TabIndex = 12;
+      this.comboBoxDistanceUnit.Location = new System.Drawing.Point(114, 31);
+      this.comboBoxDistanceUnit.Name = "comboBoxDistanceUnit";
+      this.comboBoxDistanceUnit.Size = new System.Drawing.Size(72, 21);
+      this.comboBoxDistanceUnit.TabIndex = 12;
       // 
       // buttonCancel
       // 
@@ -127,7 +127,7 @@
       this.Controls.Add(this.buttonCancel);
       this.Controls.Add(this.checkBoxUnvisitedCities);
       this.Controls.Add(this.labelDistanceUnit);
-      this.Controls.Add(this.comboBoxUnit);
+      this.Controls.Add(this.comboBoxDistanceUnit);
       this.Controls.Add(this.buttonOk);
       this.Controls.Add(this.buttonSelectDecrypter);
       this.Controls.Add(this.label1);
@@ -154,7 +154,7 @@
     private System.Windows.Forms.OpenFileDialog openFileDialog;
     private System.Windows.Forms.CheckBox checkBoxUnvisitedCities;
     private System.Windows.Forms.Label labelDistanceUnit;
-    private System.Windows.Forms.ComboBox comboBoxUnit;
+    private System.Windows.Forms.ComboBox comboBoxDistanceUnit;
     private System.Windows.Forms.Button buttonCancel;
   }
 }
