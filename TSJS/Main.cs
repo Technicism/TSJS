@@ -138,9 +138,12 @@ namespace TSJS {
       contents = File.ReadAllText(openFileDialog.FileName);
       if (contents.Substring(0, 4) == "ScsC") {         // Encrypted.
         string tempFile = Path.GetTempFileName();
-        Process process = Process.Start(decrypterPath, openFileDialog.FileName + " " + tempFile);
+        Process process = new Process();
+        process.StartInfo = new ProcessStartInfo(decrypterPath, openFileDialog.FileName + " " + tempFile);
+        process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+        process.Start();
         process.WaitForExit();
-        this.contents = File.ReadAllText(tempFile);
+        contents = File.ReadAllText(tempFile);
         File.Delete(tempFile);
       } else if (contents.Substring(0, 4) != "SiiN") {  // Decrypted.
         Cursor.Current = Cursors.Default;

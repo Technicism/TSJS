@@ -29,5 +29,9 @@ namespace TSJS {
       main.decrypterPath = decrypterPath;
       Close();
     }
+
+    private void Setup_Load(object sender, EventArgs e) {
+
+    }
   }
 }
