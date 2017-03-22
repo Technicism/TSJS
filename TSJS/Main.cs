@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
 namespace TSJS {
   public partial class Main : Form {
+
+    public string decrypterPath;
 
     // Unencrypted plain text of the save game.
     private string contents;
@@ -131,15 +134,23 @@ namespace TSJS {
         return;
       }
       Cursor.Current = Cursors.WaitCursor;
+
       contents = File.ReadAllText(openFileDialog.FileName);
-      if (contents.Substring(0, 8) != "SiiNunit" || !contents.Contains("economy")) {
+      if (contents.Substring(0, 4) == "ScsC") {         // Encrypted.
+        string tempFile = Path.GetTempFileName();
+        Process process = Process.Start(decrypterPath, openFileDialog.FileName + " " + tempFile);
+        process.WaitForExit();
+        this.contents = File.ReadAllText(tempFile);
+        File.Delete(tempFile);
+      } else if (contents.Substring(0, 4) != "SiiN") {  // Decrypted.
         Cursor.Current = Cursors.Default;
-        MessageBox.Show("Only unencrypted plain text save games are supported. ", "Cannot Open File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("Cannot Open File.", "Cannot Open File", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
+
       Text = "TSJS - Truck Simulator Job Searcher - " + openFileDialog.FileName;
 
-      // Clear previous file.
+      // Clear previous file (if any).
       int offset = 0;
       dataGridViewOfferedJobs.Rows.Clear();
       dataGridViewCompletedJobs.Rows.Clear();
@@ -155,12 +166,12 @@ namespace TSJS {
         while (true) {
           string companyStart = "company : ";
           string companyStop = "}";
-          int start = contents.IndexOf(companyStart, offset);
+          int start = this.contents.IndexOf(companyStart, offset);
           if (start == -1) {
             break;  // No more companies.
           }
-          int stop = contents.IndexOf(companyStop, start) + companyStop.Length;
-          Company company = new Company(contents.Substring(start, stop - start));
+          int stop = this.contents.IndexOf(companyStop, start) + companyStop.Length;
+          Company company = new Company(this.contents.Substring(start, stop - start));
           companies.Add(company.id, company);
 
           // Storing all of the offers and their corresponding source company once, saves from searching through all companies to find the offers each time.
@@ -175,12 +186,12 @@ namespace TSJS {
         while (true) {
           string offerStart = "job_offer_data : ";
           string offerStop = "}";
-          int start = contents.IndexOf(offerStart, offset);
+          int start = this.contents.IndexOf(offerStart, offset);
           if (start == -1) {
             break;  // No more job offers.
           }
-          int stop = contents.IndexOf(offerStop, start) + offerStop.Length;
-          Job job = new Job(contents.Substring(start, stop - start));
+          int stop = this.contents.IndexOf(offerStop, start) + offerStop.Length;
+          Job job = new Job(this.contents.Substring(start, stop - start));
           job.AddSource(offers[job.id]);
           if (job.IsValid()) {
             AddJobRow(dataGridViewOfferedJobs, job);
@@ -194,12 +205,12 @@ namespace TSJS {
         while (true) {
           string offerStart = "delivery_log_entry : ";
           string offerStop = "}";
-          int start = contents.IndexOf(offerStart, offset);
+          int start = this.contents.IndexOf(offerStart, offset);
           if (start == -1) {
             break;  // No more job offers.
           }
-          int stop = contents.IndexOf(offerStop, start) + offerStop.Length;
-          Job job = new Job(contents.Substring(start, stop - start));
+          int stop = this.contents.IndexOf(offerStop, start) + offerStop.Length;
+          Job job = new Job(this.contents.Substring(start, stop - start));
           if (job.IsValid()) {
             AddJobRow(dataGridViewCompletedJobs, job);
             completedJobs.Add(job.id, job);
@@ -208,9 +219,9 @@ namespace TSJS {
         }
 
         // Get all of the visited cities.
-        int vistedCitiesCount = int.Parse(BetweenExclusive(contents, "visited_cities: ", "\r\n"));
+        int vistedCitiesCount = int.Parse(BetweenExclusive(this.contents, "visited_cities: ", "\r\n"));
         for (int i = 0; i < vistedCitiesCount; i++) {
-          visitedCities.Add(BetweenExclusive(contents, "visited_cities[" + i + "]: ", "\r\n"), true);
+          visitedCities.Add(BetweenExclusive(this.contents, "visited_cities[" + i + "]: ", "\r\n"), true);
         }
 
         // Apply search.
@@ -251,7 +262,13 @@ namespace TSJS {
     }
 
     private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-      System.Diagnostics.Process.Start("https://github.com/Technicism/TSJS");
+      System.Diagnostics.Process.Start("https://github.com/Technicism/TSJS"); // Open up URL in default web browser.
+    }
+
+    private void buttonSetup_Click(object sender, EventArgs e) {
+      Setup setup = new Setup(this, decrypterPath);
+      setup.Show();
+      decrypterPath = setup.decrypterPath;
     }
   }
 }

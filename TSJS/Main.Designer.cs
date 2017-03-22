@@ -54,6 +54,7 @@
       this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
       this.label1 = new System.Windows.Forms.Label();
       this.checkBoxUnvisitedCities = new System.Windows.Forms.CheckBox();
+      this.buttonSetup = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferedJobs)).BeginInit();
       this.tabControl.SuspendLayout();
       this.tabPageOfferedJobs.SuspendLayout();
@@ -140,7 +141,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBoxSearch.Location = new System.Drawing.Point(132, 13);
       this.textBoxSearch.Name = "textBoxSearch";
-      this.textBoxSearch.Size = new System.Drawing.Size(547, 20);
+      this.textBoxSearch.Size = new System.Drawing.Size(484, 20);
       this.textBoxSearch.TabIndex = 3;
       this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
       // 
@@ -287,7 +288,7 @@
       // 
       this.labelCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.labelCount.AutoSize = true;
-      this.labelCount.Location = new System.Drawing.Point(304, 411);
+      this.labelCount.Location = new System.Drawing.Point(318, 411);
       this.labelCount.Name = "labelCount";
       this.labelCount.Size = new System.Drawing.Size(58, 13);
       this.labelCount.TabIndex = 11;
@@ -297,7 +298,7 @@
       // 
       this.labelCountValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.labelCountValue.AutoSize = true;
-      this.labelCountValue.Location = new System.Drawing.Point(359, 411);
+      this.labelCountValue.Location = new System.Drawing.Point(373, 411);
       this.labelCountValue.Name = "labelCountValue";
       this.labelCountValue.Size = new System.Drawing.Size(13, 13);
       this.labelCountValue.TabIndex = 12;
@@ -337,11 +338,22 @@
       this.checkBoxUnvisitedCities.UseVisualStyleBackColor = true;
       this.checkBoxUnvisitedCities.CheckedChanged += new System.EventHandler(this.checkBoxUnvisitedCities_CheckedChanged);
       // 
+      // buttonSetup
+      // 
+      this.buttonSetup.Location = new System.Drawing.Point(622, 12);
+      this.buttonSetup.Name = "buttonSetup";
+      this.buttonSetup.Size = new System.Drawing.Size(64, 22);
+      this.buttonSetup.TabIndex = 14;
+      this.buttonSetup.Text = "Setup";
+      this.buttonSetup.UseVisualStyleBackColor = true;
+      this.buttonSetup.Click += new System.EventHandler(this.buttonSetup_Click);
+      // 
       // Main
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(698, 441);
+      this.Controls.Add(this.buttonSetup);
       this.Controls.Add(this.checkBoxUnvisitedCities);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.linkLabelGitHub);
@@ -400,6 +412,7 @@
     private System.Windows.Forms.LinkLabel linkLabelGitHub;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.CheckBox checkBoxUnvisitedCities;
+    private System.Windows.Forms.Button buttonSetup;
   }
 }
 
