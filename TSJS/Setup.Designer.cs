@@ -139,7 +139,6 @@
       this.Name = "Setup";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
       this.Text = "TSJS - Truck Simulator Job Searcher - Setup";
-      this.Load += new System.EventHandler(this.Setup_Load);
       this.ResumeLayout(false);
       this.PerformLayout();
 

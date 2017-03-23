@@ -45,15 +45,12 @@
       this.dataGridViewCompletedJobsDestinationCompany = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewCompletedJobsCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewCompletedJobsDistance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.comboBoxUnit = new System.Windows.Forms.ComboBox();
-      this.labelUnit = new System.Windows.Forms.Label();
       this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
       this.labelSearch = new System.Windows.Forms.Label();
       this.labelCount = new System.Windows.Forms.Label();
       this.labelCountValue = new System.Windows.Forms.Label();
       this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
       this.label1 = new System.Windows.Forms.Label();
-      this.checkBoxUnvisitedCities = new System.Windows.Forms.CheckBox();
       this.buttonSetup = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferedJobs)).BeginInit();
       this.tabControl.SuspendLayout();
@@ -244,31 +241,6 @@
       this.dataGridViewCompletedJobsDistance.Name = "dataGridViewCompletedJobsDistance";
       this.dataGridViewCompletedJobsDistance.ReadOnly = true;
       // 
-      // comboBoxUnit
-      // 
-      this.comboBoxUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.comboBoxUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.comboBoxUnit.FormattingEnabled = true;
-      this.comboBoxUnit.Items.AddRange(new object[] {
-            "Kilometres",
-            "Miles"});
-      this.comboBoxUnit.Location = new System.Drawing.Point(49, 408);
-      this.comboBoxUnit.Name = "comboBoxUnit";
-      this.comboBoxUnit.Size = new System.Drawing.Size(72, 21);
-      this.comboBoxUnit.TabIndex = 9;
-      this.comboBoxUnit.SelectedIndexChanged += new System.EventHandler(this.comboBoxUnit_SelectedIndexChanged);
-      // 
-      // labelUnit
-      // 
-      this.labelUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.labelUnit.AutoSize = true;
-      this.labelUnit.Location = new System.Drawing.Point(14, 411);
-      this.labelUnit.Name = "labelUnit";
-      this.labelUnit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-      this.labelUnit.Size = new System.Drawing.Size(29, 13);
-      this.labelUnit.TabIndex = 8;
-      this.labelUnit.Text = "Unit:";
-      // 
       // openFileDialog
       // 
       this.openFileDialog.DefaultExt = "sii";
@@ -326,18 +298,6 @@
       this.label1.TabIndex = 12;
       this.label1.Text = "v1.0.0.0";
       // 
-      // checkBoxUnvisitedCities
-      // 
-      this.checkBoxUnvisitedCities.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.checkBoxUnvisitedCities.AutoSize = true;
-      this.checkBoxUnvisitedCities.Location = new System.Drawing.Point(132, 410);
-      this.checkBoxUnvisitedCities.Name = "checkBoxUnvisitedCities";
-      this.checkBoxUnvisitedCities.Size = new System.Drawing.Size(160, 17);
-      this.checkBoxUnvisitedCities.TabIndex = 10;
-      this.checkBoxUnvisitedCities.Text = "Show unvisited source cities";
-      this.checkBoxUnvisitedCities.UseVisualStyleBackColor = true;
-      this.checkBoxUnvisitedCities.CheckedChanged += new System.EventHandler(this.checkBoxUnvisitedCities_CheckedChanged);
-      // 
       // buttonSetup
       // 
       this.buttonSetup.Location = new System.Drawing.Point(622, 12);
@@ -354,14 +314,11 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(698, 441);
       this.Controls.Add(this.buttonSetup);
-      this.Controls.Add(this.checkBoxUnvisitedCities);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.linkLabelGitHub);
       this.Controls.Add(this.labelCountValue);
       this.Controls.Add(this.labelCount);
       this.Controls.Add(this.labelSearch);
-      this.Controls.Add(this.labelUnit);
-      this.Controls.Add(this.comboBoxUnit);
       this.Controls.Add(this.tabControl);
       this.Controls.Add(this.textBoxSearch);
       this.Controls.Add(this.buttonOpen);
@@ -369,7 +326,6 @@
       this.MinimumSize = new System.Drawing.Size(640, 240);
       this.Name = "Main";
       this.Text = "TSJS - Truck Simulator Job Searcher";
-      this.Load += new System.EventHandler(this.Main_Load);
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferedJobs)).EndInit();
       this.tabControl.ResumeLayout(false);
       this.tabPageOfferedJobs.ResumeLayout(false);
@@ -388,8 +344,6 @@
     private System.Windows.Forms.TabControl tabControl;
     private System.Windows.Forms.TabPage tabPageOfferedJobs;
     private System.Windows.Forms.TabPage tabPageCompletedJobs;
-    private System.Windows.Forms.ComboBox comboBoxUnit;
-    private System.Windows.Forms.Label labelUnit;
     private System.Windows.Forms.OpenFileDialog openFileDialog;
     private System.Windows.Forms.Label labelSearch;
     private System.Windows.Forms.Label labelCount;
@@ -411,7 +365,6 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewOfferedJobsDistance;
     private System.Windows.Forms.LinkLabel linkLabelGitHub;
     private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.CheckBox checkBoxUnvisitedCities;
     private System.Windows.Forms.Button buttonSetup;
   }
 }

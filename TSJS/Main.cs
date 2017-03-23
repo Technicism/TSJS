@@ -42,7 +42,7 @@ namespace TSJS {
     /// <param name="job"></param>
     private void AddJobRow(DataGridView dataGridView, Job job) {
       int distance = job.distanceKilometres;
-      if (comboBoxUnit.SelectedIndex == MILES) {
+      if (Properties.Settings.Default.DistanceUnit == MILES) {
         distance = job.distanceMiles;
       }
       dataGridView.Rows.Add(job.id, job.sourceCity, job.sourceCompany, job.destinationCity, job.destinationCompany, job.cargo, distance);
@@ -58,9 +58,9 @@ namespace TSJS {
       string nameId = dataGridView.Name + "Id";
       for (int i = 0; i < dataGridView.Rows.Count; i++) {
         DataGridViewCellCollection cells = dataGridView.Rows[i].Cells;
-        if (comboBoxUnit.SelectedIndex == KILOMETRES) {
+        if (Properties.Settings.Default.DistanceUnit == KILOMETRES) {
           cells[nameDistance].Value = jobs[cells[nameId].Value.ToString()].distanceKilometres;
-        } else if (comboBoxUnit.SelectedIndex == MILES) {
+        } else if (Properties.Settings.Default.DistanceUnit == MILES) {
           cells[nameDistance].Value = jobs[cells[nameId].Value.ToString()].distanceMiles;
         }
       }
@@ -115,7 +115,7 @@ namespace TSJS {
     public void ApplySearch() {
       Cursor.Current = Cursors.WaitCursor;
       Dictionary<string, bool> visited = new Dictionary<string, bool>();
-      if (!checkBoxUnvisitedCities.Checked) {
+      if (!Properties.Settings.Default.UnvisitedCities) {
         visited = visitedCities;
       }
       Search(offeredJobs, dataGridViewOfferedJobs, visited, textBoxSearch.Text);
@@ -234,28 +234,6 @@ namespace TSJS {
       Cursor.Current = Cursors.Default;
     }
 
-    private void Main_Load(object sender, EventArgs e) {
-      comboBoxUnit.SelectedIndex = KILOMETRES;
-
-      /*
-      string configPath = Environment.CurrentDirectory + "\\TSJS.cfg";
-      if (!File.Exists(configPath)) {
-        File.WriteAllText(configPath,
-          "decrypterPath "
-        );
-      }
-      Console.WriteLine(Environment.CurrentDirectory);
-      */
-    }
-
-    private void comboBoxUnit_SelectedIndexChanged(object sender, EventArgs e) {
-      Cursor.Current = Cursors.WaitCursor;
-      ChangeMetric(offeredJobs, dataGridViewOfferedJobs);
-      ChangeMetric(completedJobs, dataGridViewCompletedJobs);
-      ApplySearch();
-      Cursor.Current = Cursors.Default;
-    }
-
     private void tabControl_SelectedIndexChanged(object sender, EventArgs e) {
       if (tabControl.SelectedIndex == 0) {
         labelCountValue.Text = dataGridViewOfferedJobs.Rows.Count.ToString();
@@ -268,17 +246,14 @@ namespace TSJS {
       ApplySearch();
     }
 
-    private void checkBoxUnvisitedCities_CheckedChanged(object sender, EventArgs e) {
-      ApplySearch();
-    }
-
     private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-      System.Diagnostics.Process.Start("https://github.com/Technicism/TSJS"); // Open up URL in default web browser.
+      Process.Start("https://github.com/Technicism/TSJS"); // Open up URL in default web browser.
     }
 
     private void buttonSetup_Click(object sender, EventArgs e) {
       Setup setup = new Setup();
-      setup.Show();
+      setup.ShowDialog();
+      ApplySearch();
     }
   }
 }
