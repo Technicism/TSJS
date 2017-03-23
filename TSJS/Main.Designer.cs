@@ -25,13 +25,6 @@
     private void InitializeComponent() {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
       this.dataGridViewOfferedJobs = new System.Windows.Forms.DataGridView();
-      this.dataGridViewOfferedJobsId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewOfferedJobsSourceCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewOfferedJobsSourceCompany = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewOfferedJobsDestinationCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewOfferedJobsDestinationCompany = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewOfferedJobsCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewOfferedJobsDistance = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.buttonOpen = new System.Windows.Forms.Button();
       this.textBoxSearch = new System.Windows.Forms.TextBox();
       this.tabControl = new System.Windows.Forms.TabControl();
@@ -52,6 +45,15 @@
       this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
       this.label1 = new System.Windows.Forms.Label();
       this.buttonSetup = new System.Windows.Forms.Button();
+      this.dataGridViewOfferedJobsId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewOfferedJobsSourceCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewOfferedJobsSourceCompany = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewOfferedJobsDestinationCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewOfferedJobsDestinationCompany = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewOfferedJobsCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewOfferedJobsDistance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewOfferedProfit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewCompletedProfit = new System.Windows.Forms.DataGridViewTextBoxColumn();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferedJobs)).BeginInit();
       this.tabControl.SuspendLayout();
       this.tabPageOfferedJobs.SuspendLayout();
@@ -71,56 +73,14 @@
             this.dataGridViewOfferedJobsDestinationCity,
             this.dataGridViewOfferedJobsDestinationCompany,
             this.dataGridViewOfferedJobsCargo,
-            this.dataGridViewOfferedJobsDistance});
+            this.dataGridViewOfferedJobsDistance,
+            this.dataGridViewOfferedProfit});
       this.dataGridViewOfferedJobs.Dock = System.Windows.Forms.DockStyle.Fill;
       this.dataGridViewOfferedJobs.Location = new System.Drawing.Point(3, 3);
       this.dataGridViewOfferedJobs.Name = "dataGridViewOfferedJobs";
       this.dataGridViewOfferedJobs.ReadOnly = true;
       this.dataGridViewOfferedJobs.Size = new System.Drawing.Size(660, 330);
       this.dataGridViewOfferedJobs.TabIndex = 5;
-      // 
-      // dataGridViewOfferedJobsId
-      // 
-      this.dataGridViewOfferedJobsId.HeaderText = "ID";
-      this.dataGridViewOfferedJobsId.Name = "dataGridViewOfferedJobsId";
-      this.dataGridViewOfferedJobsId.ReadOnly = true;
-      this.dataGridViewOfferedJobsId.Visible = false;
-      // 
-      // dataGridViewOfferedJobsSourceCity
-      // 
-      this.dataGridViewOfferedJobsSourceCity.HeaderText = "Source City";
-      this.dataGridViewOfferedJobsSourceCity.Name = "dataGridViewOfferedJobsSourceCity";
-      this.dataGridViewOfferedJobsSourceCity.ReadOnly = true;
-      // 
-      // dataGridViewOfferedJobsSourceCompany
-      // 
-      this.dataGridViewOfferedJobsSourceCompany.HeaderText = "Source Company";
-      this.dataGridViewOfferedJobsSourceCompany.Name = "dataGridViewOfferedJobsSourceCompany";
-      this.dataGridViewOfferedJobsSourceCompany.ReadOnly = true;
-      // 
-      // dataGridViewOfferedJobsDestinationCity
-      // 
-      this.dataGridViewOfferedJobsDestinationCity.HeaderText = "Destination City";
-      this.dataGridViewOfferedJobsDestinationCity.Name = "dataGridViewOfferedJobsDestinationCity";
-      this.dataGridViewOfferedJobsDestinationCity.ReadOnly = true;
-      // 
-      // dataGridViewOfferedJobsDestinationCompany
-      // 
-      this.dataGridViewOfferedJobsDestinationCompany.HeaderText = "Destination Company";
-      this.dataGridViewOfferedJobsDestinationCompany.Name = "dataGridViewOfferedJobsDestinationCompany";
-      this.dataGridViewOfferedJobsDestinationCompany.ReadOnly = true;
-      // 
-      // dataGridViewOfferedJobsCargo
-      // 
-      this.dataGridViewOfferedJobsCargo.HeaderText = "Cargo";
-      this.dataGridViewOfferedJobsCargo.Name = "dataGridViewOfferedJobsCargo";
-      this.dataGridViewOfferedJobsCargo.ReadOnly = true;
-      // 
-      // dataGridViewOfferedJobsDistance
-      // 
-      this.dataGridViewOfferedJobsDistance.HeaderText = "Distance";
-      this.dataGridViewOfferedJobsDistance.Name = "dataGridViewOfferedJobsDistance";
-      this.dataGridViewOfferedJobsDistance.ReadOnly = true;
       // 
       // buttonOpen
       // 
@@ -190,7 +150,8 @@
             this.dataGridViewCompletedJobsDestinationCity,
             this.dataGridViewCompletedJobsDestinationCompany,
             this.dataGridViewCompletedJobsCargo,
-            this.dataGridViewCompletedJobsDistance});
+            this.dataGridViewCompletedJobsDistance,
+            this.dataGridViewCompletedProfit});
       this.dataGridViewCompletedJobs.Dock = System.Windows.Forms.DockStyle.Fill;
       this.dataGridViewCompletedJobs.Location = new System.Drawing.Point(3, 3);
       this.dataGridViewCompletedJobs.Name = "dataGridViewCompletedJobs";
@@ -260,7 +221,7 @@
       // 
       this.labelCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.labelCount.AutoSize = true;
-      this.labelCount.Location = new System.Drawing.Point(318, 411);
+      this.labelCount.Location = new System.Drawing.Point(12, 411);
       this.labelCount.Name = "labelCount";
       this.labelCount.Size = new System.Drawing.Size(58, 13);
       this.labelCount.TabIndex = 11;
@@ -270,7 +231,7 @@
       // 
       this.labelCountValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.labelCountValue.AutoSize = true;
-      this.labelCountValue.Location = new System.Drawing.Point(373, 411);
+      this.labelCountValue.Location = new System.Drawing.Point(67, 411);
       this.labelCountValue.Name = "labelCountValue";
       this.labelCountValue.Size = new System.Drawing.Size(13, 13);
       this.labelCountValue.TabIndex = 12;
@@ -300,6 +261,7 @@
       // 
       // buttonSetup
       // 
+      this.buttonSetup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.buttonSetup.Location = new System.Drawing.Point(622, 12);
       this.buttonSetup.Name = "buttonSetup";
       this.buttonSetup.Size = new System.Drawing.Size(64, 22);
@@ -307,6 +269,61 @@
       this.buttonSetup.Text = "Setup";
       this.buttonSetup.UseVisualStyleBackColor = true;
       this.buttonSetup.Click += new System.EventHandler(this.buttonSetup_Click);
+      // 
+      // dataGridViewOfferedJobsId
+      // 
+      this.dataGridViewOfferedJobsId.HeaderText = "ID";
+      this.dataGridViewOfferedJobsId.Name = "dataGridViewOfferedJobsId";
+      this.dataGridViewOfferedJobsId.ReadOnly = true;
+      this.dataGridViewOfferedJobsId.Visible = false;
+      // 
+      // dataGridViewOfferedJobsSourceCity
+      // 
+      this.dataGridViewOfferedJobsSourceCity.HeaderText = "Source City";
+      this.dataGridViewOfferedJobsSourceCity.Name = "dataGridViewOfferedJobsSourceCity";
+      this.dataGridViewOfferedJobsSourceCity.ReadOnly = true;
+      // 
+      // dataGridViewOfferedJobsSourceCompany
+      // 
+      this.dataGridViewOfferedJobsSourceCompany.HeaderText = "Source Company";
+      this.dataGridViewOfferedJobsSourceCompany.Name = "dataGridViewOfferedJobsSourceCompany";
+      this.dataGridViewOfferedJobsSourceCompany.ReadOnly = true;
+      // 
+      // dataGridViewOfferedJobsDestinationCity
+      // 
+      this.dataGridViewOfferedJobsDestinationCity.HeaderText = "Destination City";
+      this.dataGridViewOfferedJobsDestinationCity.Name = "dataGridViewOfferedJobsDestinationCity";
+      this.dataGridViewOfferedJobsDestinationCity.ReadOnly = true;
+      // 
+      // dataGridViewOfferedJobsDestinationCompany
+      // 
+      this.dataGridViewOfferedJobsDestinationCompany.HeaderText = "Destination Company";
+      this.dataGridViewOfferedJobsDestinationCompany.Name = "dataGridViewOfferedJobsDestinationCompany";
+      this.dataGridViewOfferedJobsDestinationCompany.ReadOnly = true;
+      // 
+      // dataGridViewOfferedJobsCargo
+      // 
+      this.dataGridViewOfferedJobsCargo.HeaderText = "Cargo";
+      this.dataGridViewOfferedJobsCargo.Name = "dataGridViewOfferedJobsCargo";
+      this.dataGridViewOfferedJobsCargo.ReadOnly = true;
+      // 
+      // dataGridViewOfferedJobsDistance
+      // 
+      this.dataGridViewOfferedJobsDistance.HeaderText = "Distance";
+      this.dataGridViewOfferedJobsDistance.Name = "dataGridViewOfferedJobsDistance";
+      this.dataGridViewOfferedJobsDistance.ReadOnly = true;
+      // 
+      // dataGridViewOfferedProfit
+      // 
+      this.dataGridViewOfferedProfit.HeaderText = "Profit";
+      this.dataGridViewOfferedProfit.Name = "dataGridViewOfferedProfit";
+      this.dataGridViewOfferedProfit.ReadOnly = true;
+      // 
+      // dataGridViewCompletedProfit
+      // 
+      this.dataGridViewCompletedProfit.HeaderText = "Profit";
+      this.dataGridViewCompletedProfit.Name = "dataGridViewCompletedProfit";
+      this.dataGridViewCompletedProfit.ReadOnly = true;
       // 
       // Main
       // 
@@ -356,6 +373,9 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewCompletedJobsDestinationCompany;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewCompletedJobsCargo;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewCompletedJobsDistance;
+    private System.Windows.Forms.LinkLabel linkLabelGitHub;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Button buttonSetup;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewOfferedJobsId;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewOfferedJobsSourceCity;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewOfferedJobsSourceCompany;
@@ -363,9 +383,8 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewOfferedJobsDestinationCompany;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewOfferedJobsCargo;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewOfferedJobsDistance;
-    private System.Windows.Forms.LinkLabel linkLabelGitHub;
-    private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.Button buttonSetup;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewOfferedProfit;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewCompletedProfit;
   }
 }
 

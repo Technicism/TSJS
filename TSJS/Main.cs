@@ -45,7 +45,7 @@ namespace TSJS {
       if (Properties.Settings.Default.DistanceUnit == MILES) {
         distance = job.distanceMiles;
       }
-      dataGridView.Rows.Add(job.id, job.sourceCity, job.sourceCompany, job.destinationCity, job.destinationCompany, job.cargo, distance);
+      dataGridView.Rows.Add(job.id, job.sourceCity, job.sourceCompany, job.destinationCity, job.destinationCompany, job.cargo, distance, job.profit);
     }
 
     /// <summary>

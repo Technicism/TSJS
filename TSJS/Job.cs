@@ -11,6 +11,7 @@ namespace TSJS {
     public string destinationCompany;
     public int distanceKilometres;
     public int distanceMiles;
+    public int profit = -1;
 
     private const double KILOMETRES_TO_MILES = 0.621371;
 
@@ -43,6 +44,7 @@ namespace TSJS {
         }
         distanceKilometres = int.Parse(Main.BetweenExclusive(job, "params[6]: ", "\r\n"));
         distanceMiles = (int)(Math.Round(distanceKilometres * KILOMETRES_TO_MILES));
+        profit = int.Parse(Main.BetweenExclusive(job, "params[5]: ", "\r\n"));
       }  
     }
 
