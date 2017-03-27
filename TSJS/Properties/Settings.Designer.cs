@@ -58,5 +58,17 @@ namespace TSJS.Properties {
                 this["UnvisitedCities"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ExtractorPath {
+            get {
+                return ((string)(this["ExtractorPath"]));
+            }
+            set {
+                this["ExtractorPath"] = value;
+            }
+        }
     }
 }
