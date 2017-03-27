@@ -137,7 +137,7 @@ namespace TSJS {
       if (contents.Substring(0, 4) == "ScsC") {         // Encrypted.
         string tempFile = Path.GetTempFileName();
         Process process = new Process();
-        process.StartInfo = new ProcessStartInfo(Properties.Settings.Default.DecrypterPath, openFileDialog.FileName + " " + tempFile);
+        process.StartInfo = new ProcessStartInfo(Properties.Settings.Default.Decrypter, openFileDialog.FileName + " " + tempFile);
         process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
         process.Start();
         process.WaitForExit();

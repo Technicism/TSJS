@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TSJS.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DecrypterPath" Type="System.String" Scope="User">
+    <Setting Name="Decrypter" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DistanceUnit" Type="System.Int32" Scope="User">
@@ -11,8 +11,14 @@
     <Setting Name="UnvisitedCities" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="ExtractorPath" Type="System.String" Scope="User">
+    <Setting Name="Extractor" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ETS2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\Steam\SteamApps\common\Euro Truck Simulator 2</Value>
+    </Setting>
+    <Setting Name="ATS" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\Steam\SteamApps\common\American Truck Simulator</Value>
     </Setting>
   </Settings>
 </SettingsFile>

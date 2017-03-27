@@ -26,12 +26,12 @@ namespace TSJS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DecrypterPath {
+        public string Decrypter {
             get {
-                return ((string)(this["DecrypterPath"]));
+                return ((string)(this["Decrypter"]));
             }
             set {
-                this["DecrypterPath"] = value;
+                this["Decrypter"] = value;
             }
         }
         
@@ -62,12 +62,36 @@ namespace TSJS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ExtractorPath {
+        public string Extractor {
             get {
-                return ((string)(this["ExtractorPath"]));
+                return ((string)(this["Extractor"]));
             }
             set {
-                this["ExtractorPath"] = value;
+                this["Extractor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Steam\\SteamApps\\common\\Euro Truck Simulator 2")]
+        public string ETS2 {
+            get {
+                return ((string)(this["ETS2"]));
+            }
+            set {
+                this["ETS2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Steam\\SteamApps\\common\\American Truck Simulator")]
+        public string ATS {
+            get {
+                return ((string)(this["ATS"]));
+            }
+            set {
+                this["ATS"] = value;
             }
         }
     }
