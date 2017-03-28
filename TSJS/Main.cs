@@ -19,9 +19,15 @@ namespace TSJS {
     private Dictionary<string, Job> completedJobs = new Dictionary<string, Job>();
     private Dictionary<string, bool> visitedCities = new Dictionary<string, bool>();
     
-    // Can choose between different distance units.
+    // Can choose between different distance units (needs to be in index format).
     private const int KILOMETRES = 0;
     private const int MILES = 1;
+
+    // Supported games;
+    private enum Game {
+      ETS2, ATS
+    }
+    private Game game = Game.ETS2;
 
     /// <summary>
     /// Get the string between two substrings exclusively.
@@ -169,17 +175,30 @@ namespace TSJS {
       string extractInputPath = Properties.Settings.Default.ETS2;
       string extractOutputPath = cachePath + "\\ets2";
       if (contents.Contains("garage.las_vegas")) {
+        game = Game.ATS;
         extractInputPath = Properties.Settings.Default.ATS;
         extractOutputPath = cachePath + "\\ats";
       }
-      Directory.CreateDirectory(extractOutputPath);
-      extractInputPath += "\\def.scs";    
-      Process extractor = new Process();
-      extractor.StartInfo = new ProcessStartInfo(Properties.Settings.Default.Extractor, "\"" + extractInputPath + "\" \"" + extractOutputPath + "\"");
-      extractor.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-      extractor.Start();
-      extractor.WaitForExit();
-            
+      if (!Directory.Exists(extractOutputPath)) {
+        Directory.CreateDirectory(extractOutputPath);
+        extractInputPath += "\\def.scs";
+        Process extractor = new Process();
+        extractor.StartInfo = new ProcessStartInfo(Properties.Settings.Default.Extractor, "\"" + extractInputPath + "\" \"" + extractOutputPath + "\"");
+        extractor.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+        extractor.Start();
+        extractor.WaitForExit();
+      }
+
+      // Get more information about the economy to predict how much profit will be made for offered jobs.
+      string economyContents = File.ReadAllText(extractOutputPath + "\\def\\economy_data.sii");
+      int revenuePerKm = int.Parse(BetweenExclusive(economyContents, "\trevenue_per_km: ", "\t"));
+      int fixedRevenue = -1;
+      if (game == Game.ETS2) {
+        fixedRevenue = int.Parse(BetweenExclusive(economyContents, "fixed_revenue: ", "\n"));
+      } else if (game == Game.ATS) {
+        fixedRevenue = int.Parse(BetweenExclusive(economyContents, "fixed_revenue: ", "\t"));
+      }
+
       try {
 
         // Get all of the companies.
@@ -214,6 +233,7 @@ namespace TSJS {
           Job job = new Job(contents.Substring(start, stop - start));
           job.AddSource(offers[job.id]);
           if (job.IsValid()) {
+            job.PredictRevenue(revenuePerKm, fixedRevenue);
             AddJobRow(dataGridViewOfferedJobs, job);
             offeredJobs.Add(job.id, job);
           }

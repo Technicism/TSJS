@@ -60,6 +60,10 @@ namespace TSJS {
       return true;
     }
 
+    public void PredictRevenue(int revenuePerKm, int fixedRevenue) {
+      profit = revenuePerKm * distanceKilometres;
+    }
+
     public override string ToString() {
       return sourceCity + " " + sourceCompany + " " + destinationCity + " " + destinationCompany + " " + cargo;
     }
