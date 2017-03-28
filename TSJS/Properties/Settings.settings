@@ -20,5 +20,8 @@
     <Setting Name="ATS" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files (x86)\Steam\SteamApps\common\American Truck Simulator</Value>
     </Setting>
+    <Setting Name="FirstRun" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

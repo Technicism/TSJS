@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace TSJS {
   public partial class Main : Form {
@@ -136,11 +137,11 @@ namespace TSJS {
       contents = File.ReadAllText(openFileDialog.FileName);
       if (contents.Substring(0, 4) == "ScsC") {         // Encrypted.
         string tempFile = Path.GetTempFileName();
-        Process process = new Process();
-        process.StartInfo = new ProcessStartInfo(Properties.Settings.Default.Decrypter, openFileDialog.FileName + " " + tempFile);
-        process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-        process.Start();
-        process.WaitForExit();
+        Process decrypter = new Process();
+        decrypter.StartInfo = new ProcessStartInfo(Properties.Settings.Default.Decrypter, openFileDialog.FileName + " " + tempFile);
+        decrypter.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+        decrypter.Start();
+        decrypter.WaitForExit();
         contents = File.ReadAllText(tempFile);
         File.Delete(tempFile);
       } else if (contents.Substring(0, 4) != "SiiN") {  // Decrypted.
@@ -161,18 +162,36 @@ namespace TSJS {
       visitedCities.Clear();
       offers.Clear();
 
+      // Extract game information.
+      string configPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+      string cachePath = new FileInfo(configPath).DirectoryName + "\\cache";
+      Directory.CreateDirectory(cachePath);
+      string extractInputPath = Properties.Settings.Default.ETS2;
+      string extractOutputPath = cachePath + "\\ets2";
+      if (contents.Contains("garage.las_vegas")) {
+        extractInputPath = Properties.Settings.Default.ATS;
+        extractOutputPath = cachePath + "\\ats";
+      }
+      Directory.CreateDirectory(extractOutputPath);
+      extractInputPath += "\\def.scs";    
+      Process extractor = new Process();
+      extractor.StartInfo = new ProcessStartInfo(Properties.Settings.Default.Extractor, "\"" + extractInputPath + "\" \"" + extractOutputPath + "\"");
+      extractor.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+      extractor.Start();
+      extractor.WaitForExit();
+            
       try {
 
         // Get all of the companies.
         while (true) {
           string companyStart = "company : ";
           string companyStop = "}";
-          int start = this.contents.IndexOf(companyStart, offset);
+          int start = contents.IndexOf(companyStart, offset);
           if (start == -1) {
             break;  // No more companies.
           }
-          int stop = this.contents.IndexOf(companyStop, start) + companyStop.Length;
-          Company company = new Company(this.contents.Substring(start, stop - start));
+          int stop = contents.IndexOf(companyStop, start) + companyStop.Length;
+          Company company = new Company(contents.Substring(start, stop - start));
           companies.Add(company.id, company);
 
           // Storing all of the offers and their corresponding source company once, saves from searching through all companies to find the offers each time.
@@ -187,12 +206,12 @@ namespace TSJS {
         while (true) {
           string offerStart = "job_offer_data : ";
           string offerStop = "}";
-          int start = this.contents.IndexOf(offerStart, offset);
+          int start = contents.IndexOf(offerStart, offset);
           if (start == -1) {
             break;  // No more job offers.
           }
-          int stop = this.contents.IndexOf(offerStop, start) + offerStop.Length;
-          Job job = new Job(this.contents.Substring(start, stop - start));
+          int stop = contents.IndexOf(offerStop, start) + offerStop.Length;
+          Job job = new Job(contents.Substring(start, stop - start));
           job.AddSource(offers[job.id]);
           if (job.IsValid()) {
             AddJobRow(dataGridViewOfferedJobs, job);
@@ -206,12 +225,12 @@ namespace TSJS {
         while (true) {
           string offerStart = "delivery_log_entry : ";
           string offerStop = "}";
-          int start = this.contents.IndexOf(offerStart, offset);
+          int start = contents.IndexOf(offerStart, offset);
           if (start == -1) {
             break;  // No more job offers.
           }
-          int stop = this.contents.IndexOf(offerStop, start) + offerStop.Length;
-          Job job = new Job(this.contents.Substring(start, stop - start));
+          int stop = contents.IndexOf(offerStop, start) + offerStop.Length;
+          Job job = new Job(contents.Substring(start, stop - start));
           if (job.IsValid()) {
             AddJobRow(dataGridViewCompletedJobs, job);
             completedJobs.Add(job.id, job);
@@ -220,9 +239,9 @@ namespace TSJS {
         }
 
         // Get all of the visited cities.
-        int vistedCitiesCount = int.Parse(BetweenExclusive(this.contents, "visited_cities: ", "\r\n"));
+        int vistedCitiesCount = int.Parse(BetweenExclusive(contents, "visited_cities: ", "\r\n"));
         for (int i = 0; i < vistedCitiesCount; i++) {
-          visitedCities.Add(BetweenExclusive(this.contents, "visited_cities[" + i + "]: ", "\r\n"), true);
+          visitedCities.Add(BetweenExclusive(contents, "visited_cities[" + i + "]: ", "\r\n"), true);
         }
 
         // Apply search.
