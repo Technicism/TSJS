@@ -19,10 +19,11 @@ namespace TSJS {
     private Dictionary<string, Job> completedJobs = new Dictionary<string, Job>();
     private Dictionary<string, bool> visitedCities = new Dictionary<string, bool>();
     
-    // Can choose between different distance units (needs to be in index format).
-    private const int KILOMETRES = 0;
-    private const int MILES = 1;
-
+    // Can choose between different distance units.
+    private enum Distance {
+      KILOMETRES = 0, MILES = 1
+    }
+    
     // Supported games;
     private enum Game {
       ETS2, ATS
@@ -49,7 +50,7 @@ namespace TSJS {
     /// <param name="job"></param>
     private void AddJobRow(DataGridView dataGridView, Job job) {
       int distance = job.distanceKilometres;
-      if (Properties.Settings.Default.DistanceUnit == MILES) {
+      if (Properties.Settings.Default.DistanceUnit == (int)Distance.MILES) {
         distance = job.distanceMiles;
       }
       dataGridView.Rows.Add(job.id, job.sourceCity, job.sourceCompany, job.destinationCity, job.destinationCompany, job.cargo, distance, job.profit);
@@ -65,9 +66,9 @@ namespace TSJS {
       string nameId = dataGridView.Name + "Id";
       for (int i = 0; i < dataGridView.Rows.Count; i++) {
         DataGridViewCellCollection cells = dataGridView.Rows[i].Cells;
-        if (Properties.Settings.Default.DistanceUnit == KILOMETRES) {
+        if (Properties.Settings.Default.DistanceUnit == (int)Distance.KILOMETRES) {
           cells[nameDistance].Value = jobs[cells[nameId].Value.ToString()].distanceKilometres;
-        } else if (Properties.Settings.Default.DistanceUnit == MILES) {
+        } else if (Properties.Settings.Default.DistanceUnit == (int)Distance.MILES) {
           cells[nameDistance].Value = jobs[cells[nameId].Value.ToString()].distanceMiles;
         }
       }
