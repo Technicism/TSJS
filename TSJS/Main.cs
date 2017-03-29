@@ -234,7 +234,13 @@ namespace TSJS {
           Job job = new Job(contents.Substring(start, stop - start));
           job.AddSource(offers[job.id]);
           if (job.IsValid()) {
-            job.PredictRevenue(revenuePerKm, fixedRevenue);
+            string cargoPath = extractOutputPath + "\\def\\cargo\\" + job.cargo + ".sii";
+            double coefficient = 1.0;
+            if (File.Exists(cargoPath)) {
+              string cargoContents = File.ReadAllText(cargoPath);
+              coefficient = double.Parse(BetweenExclusive(cargoContents, "price_coef: ", "\n"));
+            }
+            job.PredictRevenue(revenuePerKm, fixedRevenue, coefficient);
             AddJobRow(dataGridViewOfferedJobs, job);
             offeredJobs.Add(job.id, job);
           }

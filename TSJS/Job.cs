@@ -60,8 +60,11 @@ namespace TSJS {
       return true;
     }
 
-    public void PredictRevenue(int revenuePerKm, int fixedRevenue) {
-      profit = revenuePerKm * distanceKilometres;
+    public void PredictRevenue(int revenuePerKm, int fixedRevenue, double coefficient) {
+      profit = (int)(revenuePerKm * distanceKilometres * coefficient);
+      if (profit < fixedRevenue) {
+        //profit = fixedRevenue;
+      }
     }
 
     public override string ToString() {
