@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace TSJS {
@@ -47,6 +50,11 @@ namespace TSJS {
       if (folderBrowserDialog.ShowDialog() == DialogResult.OK) {
         textBoxATS.Text = folderBrowserDialog.SelectedPath;
       }
+    }
+
+    private void buttonExplore_Click(object sender, EventArgs e) {
+      string configPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+      Process.Start(new FileInfo(configPath).DirectoryName);
     }
   }
 }

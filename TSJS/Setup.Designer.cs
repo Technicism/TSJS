@@ -43,11 +43,16 @@
       this.textBoxATS = new System.Windows.Forms.TextBox();
       this.labelDistanceUnit = new System.Windows.Forms.Label();
       this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+      this.buttonExplore = new System.Windows.Forms.Button();
+      this.label5 = new System.Windows.Forms.Label();
+      this.comboBoxETS2 = new System.Windows.Forms.ComboBox();
+      this.label6 = new System.Windows.Forms.Label();
+      this.comboBoxATS = new System.Windows.Forms.ComboBox();
       this.SuspendLayout();
       // 
       // textBoxDecrypter
       // 
-      this.textBoxDecrypter.Location = new System.Drawing.Point(145, 5);
+      this.textBoxDecrypter.Location = new System.Drawing.Point(143, 5);
       this.textBoxDecrypter.Name = "textBoxDecrypter";
       this.textBoxDecrypter.Size = new System.Drawing.Size(344, 20);
       this.textBoxDecrypter.TabIndex = 0;
@@ -63,7 +68,7 @@
       // 
       // buttonDecrypter
       // 
-      this.buttonDecrypter.Location = new System.Drawing.Point(495, 4);
+      this.buttonDecrypter.Location = new System.Drawing.Point(493, 4);
       this.buttonDecrypter.Name = "buttonDecrypter";
       this.buttonDecrypter.Size = new System.Drawing.Size(75, 22);
       this.buttonDecrypter.TabIndex = 2;
@@ -73,7 +78,7 @@
       // 
       // buttonOk
       // 
-      this.buttonOk.Location = new System.Drawing.Point(214, 160);
+      this.buttonOk.Location = new System.Drawing.Point(174, 214);
       this.buttonOk.Name = "buttonOk";
       this.buttonOk.Size = new System.Drawing.Size(75, 23);
       this.buttonOk.TabIndex = 3;
@@ -85,7 +90,7 @@
       // 
       this.checkBoxUnvisited.AutoSize = true;
       this.checkBoxUnvisited.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-      this.checkBoxUnvisited.Location = new System.Drawing.Point(11, 137);
+      this.checkBoxUnvisited.Location = new System.Drawing.Point(9, 191);
       this.checkBoxUnvisited.Name = "checkBoxUnvisited";
       this.checkBoxUnvisited.Size = new System.Drawing.Size(148, 17);
       this.checkBoxUnvisited.TabIndex = 13;
@@ -99,7 +104,7 @@
       this.comboBoxDistanceUnit.Items.AddRange(new object[] {
             "Kilometres",
             "Miles"});
-      this.comboBoxDistanceUnit.Location = new System.Drawing.Point(145, 110);
+      this.comboBoxDistanceUnit.Location = new System.Drawing.Point(143, 110);
       this.comboBoxDistanceUnit.Name = "comboBoxDistanceUnit";
       this.comboBoxDistanceUnit.Size = new System.Drawing.Size(72, 21);
       this.comboBoxDistanceUnit.TabIndex = 12;
@@ -107,7 +112,7 @@
       // buttonCancel
       // 
       this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.buttonCancel.Location = new System.Drawing.Point(295, 160);
+      this.buttonCancel.Location = new System.Drawing.Point(255, 214);
       this.buttonCancel.Name = "buttonCancel";
       this.buttonCancel.Size = new System.Drawing.Size(75, 23);
       this.buttonCancel.TabIndex = 14;
@@ -116,7 +121,7 @@
       // 
       // textBoxExtractor
       // 
-      this.textBoxExtractor.Location = new System.Drawing.Point(145, 32);
+      this.textBoxExtractor.Location = new System.Drawing.Point(143, 32);
       this.textBoxExtractor.Name = "textBoxExtractor";
       this.textBoxExtractor.Size = new System.Drawing.Size(344, 20);
       this.textBoxExtractor.TabIndex = 15;
@@ -132,7 +137,7 @@
       // 
       // buttonExtractor
       // 
-      this.buttonExtractor.Location = new System.Drawing.Point(495, 31);
+      this.buttonExtractor.Location = new System.Drawing.Point(493, 31);
       this.buttonExtractor.Name = "buttonExtractor";
       this.buttonExtractor.Size = new System.Drawing.Size(75, 22);
       this.buttonExtractor.TabIndex = 17;
@@ -142,7 +147,7 @@
       // 
       // buttonETS2
       // 
-      this.buttonETS2.Location = new System.Drawing.Point(495, 57);
+      this.buttonETS2.Location = new System.Drawing.Point(493, 57);
       this.buttonETS2.Name = "buttonETS2";
       this.buttonETS2.Size = new System.Drawing.Size(75, 22);
       this.buttonETS2.TabIndex = 20;
@@ -161,14 +166,14 @@
       // 
       // textBoxETS2
       // 
-      this.textBoxETS2.Location = new System.Drawing.Point(145, 58);
+      this.textBoxETS2.Location = new System.Drawing.Point(143, 58);
       this.textBoxETS2.Name = "textBoxETS2";
       this.textBoxETS2.Size = new System.Drawing.Size(344, 20);
       this.textBoxETS2.TabIndex = 18;
       // 
       // buttonATS
       // 
-      this.buttonATS.Location = new System.Drawing.Point(495, 83);
+      this.buttonATS.Location = new System.Drawing.Point(493, 83);
       this.buttonATS.Name = "buttonATS";
       this.buttonATS.Size = new System.Drawing.Size(75, 22);
       this.buttonATS.TabIndex = 23;
@@ -187,7 +192,7 @@
       // 
       // textBoxATS
       // 
-      this.textBoxATS.Location = new System.Drawing.Point(145, 84);
+      this.textBoxATS.Location = new System.Drawing.Point(143, 84);
       this.textBoxATS.Name = "textBoxATS";
       this.textBoxATS.Size = new System.Drawing.Size(344, 20);
       this.textBoxATS.TabIndex = 21;
@@ -202,13 +207,79 @@
       this.labelDistanceUnit.TabIndex = 11;
       this.labelDistanceUnit.Text = "Distance Unit:";
       // 
+      // buttonExplore
+      // 
+      this.buttonExplore.Location = new System.Drawing.Point(336, 214);
+      this.buttonExplore.Name = "buttonExplore";
+      this.buttonExplore.Size = new System.Drawing.Size(75, 23);
+      this.buttonExplore.TabIndex = 24;
+      this.buttonExplore.Text = "Explore";
+      this.buttonExplore.UseVisualStyleBackColor = true;
+      this.buttonExplore.Click += new System.EventHandler(this.buttonExplore_Click);
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(59, 140);
+      this.label5.Name = "label5";
+      this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+      this.label5.Size = new System.Drawing.Size(82, 13);
+      this.label5.TabIndex = 25;
+      this.label5.Text = "ETS2 Currency:";
+      // 
+      // comboBoxETS2
+      // 
+      this.comboBoxETS2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.comboBoxETS2.FormattingEnabled = true;
+      this.comboBoxETS2.Items.AddRange(new object[] {
+            "EUR",
+            "CHF",
+            "CZK",
+            "GBP",
+            "PLN",
+            "HUF",
+            "DKK",
+            "SEK",
+            "NOK"});
+      this.comboBoxETS2.Location = new System.Drawing.Point(143, 137);
+      this.comboBoxETS2.Name = "comboBoxETS2";
+      this.comboBoxETS2.Size = new System.Drawing.Size(72, 21);
+      this.comboBoxETS2.TabIndex = 26;
+      // 
+      // label6
+      // 
+      this.label6.AutoSize = true;
+      this.label6.Location = new System.Drawing.Point(63, 167);
+      this.label6.Name = "label6";
+      this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+      this.label6.Size = new System.Drawing.Size(76, 13);
+      this.label6.TabIndex = 27;
+      this.label6.Text = "ATS Currency:";
+      // 
+      // comboBoxATS
+      // 
+      this.comboBoxATS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.comboBoxATS.FormattingEnabled = true;
+      this.comboBoxATS.Items.AddRange(new object[] {
+            "USD",
+            "EUR"});
+      this.comboBoxATS.Location = new System.Drawing.Point(143, 164);
+      this.comboBoxATS.Name = "comboBoxATS";
+      this.comboBoxATS.Size = new System.Drawing.Size(72, 21);
+      this.comboBoxATS.TabIndex = 28;
+      // 
       // Setup
       // 
       this.AcceptButton = this.buttonOk;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.buttonCancel;
-      this.ClientSize = new System.Drawing.Size(584, 188);
+      this.ClientSize = new System.Drawing.Size(580, 243);
+      this.Controls.Add(this.label6);
+      this.Controls.Add(this.comboBoxATS);
+      this.Controls.Add(this.label5);
+      this.Controls.Add(this.comboBoxETS2);
+      this.Controls.Add(this.buttonExplore);
       this.Controls.Add(this.buttonATS);
       this.Controls.Add(this.label4);
       this.Controls.Add(this.textBoxATS);
@@ -260,5 +331,10 @@
     private System.Windows.Forms.TextBox textBoxATS;
     private System.Windows.Forms.Label labelDistanceUnit;
     private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+    private System.Windows.Forms.Button buttonExplore;
+    private System.Windows.Forms.Label label5;
+    private System.Windows.Forms.ComboBox comboBoxETS2;
+    private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.ComboBox comboBoxATS;
   }
 }
