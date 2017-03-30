@@ -23,8 +23,25 @@ namespace TSJS {
     private enum Distance {
       KILOMETRES = 0, MILES = 1
     }
-    
-    // Supported games;
+
+    // Different currencies, the default is the first one in the list for a game.
+    private List<double> currencyETS2 = new List<double>() {
+      1,    // EUR
+      1.2,  // CHF
+      25,   // CZK
+      0.8,  // GBP
+      4.2,  // PLN
+      293,  // HUF
+      7.5,  // DKK
+      9.4,  // SEK
+      8.6   // NOK
+    };
+    private List<double> currencyATS = new List<double>() {
+      1,    // USD
+      0.75  // EUR
+    };
+
+    // Supported games.
     private enum Game {
       ETS2, ATS
     }
@@ -53,27 +70,18 @@ namespace TSJS {
       if (Properties.Settings.Default.DistanceUnit == (int)Distance.MILES) {
         distance = job.distanceMiles;
       }
-      dataGridView.Rows.Add(job.id, job.sourceCity, job.sourceCompany, job.destinationCity, job.destinationCompany, job.cargo, distance, job.profit);
-    }
-
-    /// <summary>
-    /// Change the distance metric displayed in a grid.
-    /// </summary>
-    /// <param name="jobs"></param>
-    /// <param name="dataGridView"></param>
-    private void ChangeMetric(Dictionary<string, Job> jobs, DataGridView dataGridView) {
-      string nameDistance = dataGridView.Name + "Distance";
-      string nameId = dataGridView.Name + "Id";
-      for (int i = 0; i < dataGridView.Rows.Count; i++) {
-        DataGridViewCellCollection cells = dataGridView.Rows[i].Cells;
-        if (Properties.Settings.Default.DistanceUnit == (int)Distance.KILOMETRES) {
-          cells[nameDistance].Value = jobs[cells[nameId].Value.ToString()].distanceKilometres;
-        } else if (Properties.Settings.Default.DistanceUnit == (int)Distance.MILES) {
-          cells[nameDistance].Value = jobs[cells[nameId].Value.ToString()].distanceMiles;
-        }
+      int profit = -1;
+      if (game == Game.ETS2) {
+        profit = (int)(job.profit * currencyETS2[Properties.Settings.Default.CurrencyETS2]);
+      } else if (game == Game.ATS) {
+        profit = (int)(job.profit * currencyATS[Properties.Settings.Default.CurrencyATS]);
       }
+      if (profit < 0) {
+        profit = job.profit;
+      }
+      dataGridView.Rows.Add(job.id, job.sourceCity, job.sourceCompany, job.destinationCity, job.destinationCompany, job.cargo, distance, profit);
     }
-
+    
     /// <summary>
     /// Search all the jobs and make sure to maintain any sorting applied.
     /// </summary>
@@ -173,11 +181,11 @@ namespace TSJS {
       string configPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
       string cachePath = new FileInfo(configPath).DirectoryName + "\\cache";
       Directory.CreateDirectory(cachePath);
-      string extractInputPath = Properties.Settings.Default.ETS2;
+      string extractInputPath = Properties.Settings.Default.PathETS2;
       string extractOutputPath = cachePath + "\\ets2";
       if (contents.Contains("garage.las_vegas")) {
         game = Game.ATS;
-        extractInputPath = Properties.Settings.Default.ATS;
+        extractInputPath = Properties.Settings.Default.PathATS;
         extractOutputPath = cachePath + "\\ats";
       }
       if (!Directory.Exists(extractOutputPath)) {
@@ -300,6 +308,16 @@ namespace TSJS {
       Setup setup = new Setup();
       setup.ShowDialog();
       ApplySearch();
+    }
+
+    private void Main_Load(object sender, EventArgs e) {
+      if (Properties.Settings.Default.FirstRun) {
+        Setup setup = new Setup();
+        setup.ShowDialog();
+        ApplySearch();
+        Properties.Settings.Default.FirstRun = false;
+        Properties.Settings.Default.Save();
+      }
     }
   }
 }

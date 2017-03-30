@@ -343,6 +343,7 @@
       this.MinimumSize = new System.Drawing.Size(400, 240);
       this.Name = "Main";
       this.Text = "TSJS - Truck Simulator Job Searcher";
+      this.Load += new System.EventHandler(this.Main_Load);
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferedJobs)).EndInit();
       this.tabControl.ResumeLayout(false);
       this.tabPageOfferedJobs.ResumeLayout(false);

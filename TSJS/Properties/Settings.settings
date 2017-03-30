@@ -14,14 +14,20 @@
     <Setting Name="Extractor" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="ETS2" Type="System.String" Scope="User">
+    <Setting Name="PathETS2" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files (x86)\Steam\SteamApps\common\Euro Truck Simulator 2</Value>
     </Setting>
-    <Setting Name="ATS" Type="System.String" Scope="User">
+    <Setting Name="PathATS" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files (x86)\Steam\SteamApps\common\American Truck Simulator</Value>
     </Setting>
     <Setting Name="FirstRun" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="CurrencyETS2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="CurrencyATS" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

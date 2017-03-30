@@ -74,24 +74,24 @@ namespace TSJS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Steam\\SteamApps\\common\\Euro Truck Simulator 2")]
-        public string ETS2 {
+        public string PathETS2 {
             get {
-                return ((string)(this["ETS2"]));
+                return ((string)(this["PathETS2"]));
             }
             set {
-                this["ETS2"] = value;
+                this["PathETS2"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Steam\\SteamApps\\common\\American Truck Simulator")]
-        public string ATS {
+        public string PathATS {
             get {
-                return ((string)(this["ATS"]));
+                return ((string)(this["PathATS"]));
             }
             set {
-                this["ATS"] = value;
+                this["PathATS"] = value;
             }
         }
         
@@ -104,6 +104,30 @@ namespace TSJS.Properties {
             }
             set {
                 this["FirstRun"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CurrencyETS2 {
+            get {
+                return ((int)(this["CurrencyETS2"]));
+            }
+            set {
+                this["CurrencyETS2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CurrencyATS {
+            get {
+                return ((int)(this["CurrencyATS"]));
+            }
+            set {
+                this["CurrencyATS"] = value;
             }
         }
     }

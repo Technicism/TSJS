@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TSJS {
@@ -12,8 +13,10 @@ namespace TSJS {
     public int distanceKilometres;
     public int distanceMiles;
     public int profit = -1;
+    public int profitCurrency;
 
     private const double KILOMETRES_TO_MILES = 0.621371;
+    
 
     public Job(string job) {
       if (job.Contains("job_offer_data")) {
@@ -62,9 +65,9 @@ namespace TSJS {
 
     public void PredictRevenue(int revenuePerKm, int fixedRevenue, double coefficient) {
       profit = (int)(revenuePerKm * distanceKilometres * coefficient);
-      if (profit < fixedRevenue) {
-        //profit = fixedRevenue;
-      }
+      /*if (profit < fixedRevenue) {
+        profit = fixedRevenue;
+      }*/
     }
 
     public override string ToString() {

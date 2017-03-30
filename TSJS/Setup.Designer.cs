@@ -45,9 +45,9 @@
       this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
       this.buttonExplore = new System.Windows.Forms.Button();
       this.label5 = new System.Windows.Forms.Label();
-      this.comboBoxETS2 = new System.Windows.Forms.ComboBox();
+      this.comboBoxCurrencyETS2 = new System.Windows.Forms.ComboBox();
       this.label6 = new System.Windows.Forms.Label();
-      this.comboBoxATS = new System.Windows.Forms.ComboBox();
+      this.comboBoxCurrencyATS = new System.Windows.Forms.ComboBox();
       this.SuspendLayout();
       // 
       // textBoxDecrypter
@@ -153,7 +153,7 @@
       this.buttonETS2.TabIndex = 20;
       this.buttonETS2.Text = "Select";
       this.buttonETS2.UseVisualStyleBackColor = true;
-      this.buttonETS2.Click += new System.EventHandler(this.buttonETS2_Click);
+      this.buttonETS2.Click += new System.EventHandler(this.buttonCurrencyETS2_Click);
       // 
       // label3
       // 
@@ -179,7 +179,7 @@
       this.buttonATS.TabIndex = 23;
       this.buttonATS.Text = "Select";
       this.buttonATS.UseVisualStyleBackColor = true;
-      this.buttonATS.Click += new System.EventHandler(this.buttonATS_Click);
+      this.buttonATS.Click += new System.EventHandler(this.buttonCurrencyATS_Click);
       // 
       // label4
       // 
@@ -227,11 +227,11 @@
       this.label5.TabIndex = 25;
       this.label5.Text = "ETS2 Currency:";
       // 
-      // comboBoxETS2
+      // comboBoxCurrencyETS2
       // 
-      this.comboBoxETS2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.comboBoxETS2.FormattingEnabled = true;
-      this.comboBoxETS2.Items.AddRange(new object[] {
+      this.comboBoxCurrencyETS2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.comboBoxCurrencyETS2.FormattingEnabled = true;
+      this.comboBoxCurrencyETS2.Items.AddRange(new object[] {
             "EUR",
             "CHF",
             "CZK",
@@ -241,10 +241,10 @@
             "DKK",
             "SEK",
             "NOK"});
-      this.comboBoxETS2.Location = new System.Drawing.Point(143, 137);
-      this.comboBoxETS2.Name = "comboBoxETS2";
-      this.comboBoxETS2.Size = new System.Drawing.Size(72, 21);
-      this.comboBoxETS2.TabIndex = 26;
+      this.comboBoxCurrencyETS2.Location = new System.Drawing.Point(143, 137);
+      this.comboBoxCurrencyETS2.Name = "comboBoxCurrencyETS2";
+      this.comboBoxCurrencyETS2.Size = new System.Drawing.Size(72, 21);
+      this.comboBoxCurrencyETS2.TabIndex = 26;
       // 
       // label6
       // 
@@ -256,17 +256,17 @@
       this.label6.TabIndex = 27;
       this.label6.Text = "ATS Currency:";
       // 
-      // comboBoxATS
+      // comboBoxCurrencyATS
       // 
-      this.comboBoxATS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.comboBoxATS.FormattingEnabled = true;
-      this.comboBoxATS.Items.AddRange(new object[] {
+      this.comboBoxCurrencyATS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.comboBoxCurrencyATS.FormattingEnabled = true;
+      this.comboBoxCurrencyATS.Items.AddRange(new object[] {
             "USD",
             "EUR"});
-      this.comboBoxATS.Location = new System.Drawing.Point(143, 164);
-      this.comboBoxATS.Name = "comboBoxATS";
-      this.comboBoxATS.Size = new System.Drawing.Size(72, 21);
-      this.comboBoxATS.TabIndex = 28;
+      this.comboBoxCurrencyATS.Location = new System.Drawing.Point(143, 164);
+      this.comboBoxCurrencyATS.Name = "comboBoxCurrencyATS";
+      this.comboBoxCurrencyATS.Size = new System.Drawing.Size(72, 21);
+      this.comboBoxCurrencyATS.TabIndex = 28;
       // 
       // Setup
       // 
@@ -276,9 +276,9 @@
       this.CancelButton = this.buttonCancel;
       this.ClientSize = new System.Drawing.Size(580, 243);
       this.Controls.Add(this.label6);
-      this.Controls.Add(this.comboBoxATS);
+      this.Controls.Add(this.comboBoxCurrencyATS);
       this.Controls.Add(this.label5);
-      this.Controls.Add(this.comboBoxETS2);
+      this.Controls.Add(this.comboBoxCurrencyETS2);
       this.Controls.Add(this.buttonExplore);
       this.Controls.Add(this.buttonATS);
       this.Controls.Add(this.label4);
@@ -333,8 +333,8 @@
     private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
     private System.Windows.Forms.Button buttonExplore;
     private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.ComboBox comboBoxETS2;
+    private System.Windows.Forms.ComboBox comboBoxCurrencyETS2;
     private System.Windows.Forms.Label label6;
-    private System.Windows.Forms.ComboBox comboBoxATS;
+    private System.Windows.Forms.ComboBox comboBoxCurrencyATS;
   }
 }
