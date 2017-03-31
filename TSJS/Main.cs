@@ -149,6 +149,7 @@ namespace TSJS {
       }
       Cursor.Current = Cursors.WaitCursor;
 
+      // Decrypt file.
       contents = File.ReadAllText(openFileDialog.FileName);
       if (contents.Substring(0, 4) == "ScsC") {         // Encrypted.
         string tempFile = Path.GetTempFileName();
@@ -164,7 +165,6 @@ namespace TSJS {
         MessageBox.Show("Cannot open file, make sure this file was created with the game config.cfg file using:\r\nuset g_save_format \"2\"", "Cannot Open File", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
-
       Text = "TSJS - Truck Simulator Job Searcher - " + openFileDialog.FileName;
 
       // Clear previous file (if any).
