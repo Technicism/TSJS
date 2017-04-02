@@ -128,7 +128,7 @@ namespace TSJS {
     /// <summary>
     /// Perform a user inputted search across all grids. 
     /// </summary>
-    public void ApplySearch() {
+    private void ApplySearch() {
       Cursor.Current = Cursors.WaitCursor;
       Dictionary<string, bool> visited = new Dictionary<string, bool>();
       if (!Properties.Settings.Default.UnvisitedCities) {
@@ -139,33 +139,32 @@ namespace TSJS {
       Cursor.Current = Cursors.Default;
     }
 
-    public Main() {
-      InitializeComponent();
-    }
-
-    private void buttonOpen_Click(object sender, EventArgs e) {
-      if (openFileDialog.ShowDialog() != DialogResult.OK) {
+    private void Open(string path) {
+      if (Properties.Settings.Default.Decrypter.Length == 0) {
+        MessageBox.Show("Decrypter program dependency not provided, select it in Setup.", "No Decrypter", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
-      Cursor.Current = Cursors.WaitCursor;
+      if (Properties.Settings.Default.Extractor.Length == 0) {
+        MessageBox.Show("Extractor program dependency not provided, select it in Setup.", "No Extractor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        return;
+      }
 
       // Decrypt file.
-      contents = File.ReadAllText(openFileDialog.FileName);
+      contents = File.ReadAllText(path);
       if (contents.Substring(0, 4) == "ScsC") {         // Encrypted.
         string tempFile = Path.GetTempFileName();
         Process decrypter = new Process();
-        decrypter.StartInfo = new ProcessStartInfo(Properties.Settings.Default.Decrypter, openFileDialog.FileName + " " + tempFile);
+        decrypter.StartInfo = new ProcessStartInfo(Properties.Settings.Default.Decrypter, path + " " + tempFile);
         decrypter.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
         decrypter.Start();
         decrypter.WaitForExit();
         contents = File.ReadAllText(tempFile);
         File.Delete(tempFile);
       } else if (contents.Substring(0, 4) != "SiiN") {  // Decrypted.
-        Cursor.Current = Cursors.Default;
         MessageBox.Show("Cannot open file, make sure this file was created with the game config.cfg file using:\r\nuset g_save_format \"2\"", "Cannot Open File", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
-      Text = "TSJS - Truck Simulator Job Searcher - " + openFileDialog.FileName;
+      Text = "TSJS - Truck Simulator Job Searcher - " + path;
 
       // Clear previous file (if any).
       int offset = 0;
@@ -177,17 +176,28 @@ namespace TSJS {
       visitedCities.Clear();
       offers.Clear();
 
-      // Extract game information.
+      // Prepare to extract game information.
       string configPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
       string cachePath = new FileInfo(configPath).DirectoryName + "\\cache";
       Directory.CreateDirectory(cachePath);
       string extractInputPath = Properties.Settings.Default.PathETS2;
       string extractOutputPath = cachePath + "\\ets2";
+
+      // Check what game this is.
       if (contents.Contains("garage.las_vegas")) {
         game = Game.ATS;
         extractInputPath = Properties.Settings.Default.PathATS;
         extractOutputPath = cachePath + "\\ats";
       }
+      if (game == Game.ETS2 && Properties.Settings.Default.PathETS2.Length == 0) {
+        MessageBox.Show("ETS2 install dependency not provided, select it in Setup.", "No ETS2", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        return;
+      } else if (game == Game.ATS && Properties.Settings.Default.PathETS2.Length == 0) {
+        MessageBox.Show("ATS install dependency not provided, select it in Setup.", "No ATS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        return;
+      }
+
+      // Extract game information.
       if (!Directory.Exists(extractOutputPath)) {
         Directory.CreateDirectory(extractOutputPath);
         extractInputPath += "\\def.scs";
@@ -285,6 +295,18 @@ namespace TSJS {
         MessageBox.Show("Unable to read this file, the following exception occurred:\r\n" + exception.ToString(), "Error Reading File", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
       textBoxSearch.Focus();
+    }
+
+    public Main() {
+      InitializeComponent();
+    }
+
+    private void buttonOpen_Click(object sender, EventArgs e) {
+      if (openFileDialog.ShowDialog() != DialogResult.OK) {
+        return;
+      }
+      Cursor.Current = Cursors.WaitCursor;
+      Open(openFileDialog.FileName);
       Cursor.Current = Cursors.Default;
     }
 

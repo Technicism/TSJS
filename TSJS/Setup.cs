@@ -20,12 +20,14 @@ namespace TSJS {
     }
 
     private void buttonSelectDecrypter_Click(object sender, EventArgs e) {
+      openFileDialog.FileName = "SII_Decrypt.exe";
       if (openFileDialog.ShowDialog() == DialogResult.OK) {
         textBoxDecrypter.Text = openFileDialog.FileName;
       }
     }
 
     private void buttonSelectExtractor_Click(object sender, EventArgs e) {
+      openFileDialog.FileName = "scs_extractor.exe";
       if (openFileDialog.ShowDialog() == DialogResult.OK) {
         textBoxExtractor.Text = openFileDialog.FileName;
       }

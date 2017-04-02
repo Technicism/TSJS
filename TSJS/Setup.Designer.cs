@@ -86,6 +86,10 @@
       this.buttonOk.UseVisualStyleBackColor = true;
       this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
       // 
+      // openFileDialog
+      // 
+      this.openFileDialog.Filter = "Executable  files|*.exe|All files|*.*";
+      // 
       // checkBoxUnvisited
       // 
       this.checkBoxUnvisited.AutoSize = true;

@@ -259,8 +259,8 @@
       // 
       // openFileDialog
       // 
-      this.openFileDialog.DefaultExt = "sii";
       this.openFileDialog.FileName = "game.sii";
+      this.openFileDialog.Filter = "SII files|*.sii|All files|*.*";
       this.openFileDialog.SupportMultiDottedExtensions = true;
       // 
       // labelSearch
