@@ -1,8 +1,10 @@
 # TSJS
-Truck Simulator Job Searcher (TSJS) is a desktop application that supports more advanced searches compared to the current system used in both Euro Truck Simulator 2 (ETS2) and American Truck Simulator (ATS). TSJS is written in C# using Visual Studio Community 2015 and works by parsing a ``game.sii`` save file which is found in a Windows users ``Documents`` directory, for example ETS2:  
+Truck Simulator Job Searcher (TSJS) is a desktop application that supports more advanced searches compared to the current system used in both Euro Truck Simulator 2 (ETS2) and American Truck Simulator (ATS). TSJS is written in C# using Visual Studio Community 2015 and works by parsing a ``game.sii`` save file which is found in a Windows users ``Documents`` directory, for example ETS2:
 ``C:\Users\<WINDOWS_UESER_NAME>\Documents\Euro Truck Simulator 2\profiles\<GAME_PROFILE_ID>\save\autosave\game.sii``
 
 Additional profit information is able to be gained from reading game files as this information is not present in save files. However, it is not clear how the game calculates profit during run time and a rough estimate is only provided.
+
+![Screenshot](https://technicism.github.io/images/TSJS/screenshot.png "Screenshot")
 
 ## Dependencies
 * [SII_Decrypt](https://github.com/ncs-sniper/SII_Decrypt/releases)
