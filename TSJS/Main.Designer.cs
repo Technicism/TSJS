@@ -52,7 +52,7 @@
       this.labelCount = new System.Windows.Forms.Label();
       this.labelCountValue = new System.Windows.Forms.Label();
       this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
-      this.label1 = new System.Windows.Forms.Label();
+      this.labelVersion = new System.Windows.Forms.Label();
       this.buttonSetup = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfferedJobs)).BeginInit();
       this.tabControl.SuspendLayout();
@@ -304,15 +304,15 @@
       this.linkLabelGitHub.Text = "github.com/Technicism/TSJS";
       this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
       // 
-      // label1
+      // labelVersion
       // 
-      this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(640, 411);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(46, 13);
-      this.label1.TabIndex = 12;
-      this.label1.Text = "v1.0.0.0";
+      this.labelVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.labelVersion.AutoSize = true;
+      this.labelVersion.Location = new System.Drawing.Point(640, 411);
+      this.labelVersion.Name = "labelVersion";
+      this.labelVersion.Size = new System.Drawing.Size(46, 13);
+      this.labelVersion.TabIndex = 12;
+      this.labelVersion.Text = "v0.0.0.0";
       // 
       // buttonSetup
       // 
@@ -331,7 +331,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(698, 441);
       this.Controls.Add(this.buttonSetup);
-      this.Controls.Add(this.label1);
+      this.Controls.Add(this.labelVersion);
       this.Controls.Add(this.linkLabelGitHub);
       this.Controls.Add(this.labelCountValue);
       this.Controls.Add(this.labelCount);
@@ -375,7 +375,7 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewCompletedJobsCargo;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewCompletedJobsDistance;
     private System.Windows.Forms.LinkLabel linkLabelGitHub;
-    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Label labelVersion;
     private System.Windows.Forms.Button buttonSetup;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewOfferedJobsId;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewOfferedJobsSourceCity;
